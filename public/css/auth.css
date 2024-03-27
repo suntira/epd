@@ -47,11 +47,16 @@ form a:hover{
     color: var(--main-text);
     font-weight: 500;
 } 
-.inp{
+.inp, .inp__div{
     display: flex;
     flex-direction: column;
     gap: 2px;
 }
+
+.inp{
+    align-items: center;
+}
+
 .inp label{
     color: var(--burgundy-color);
 }

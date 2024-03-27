@@ -9,15 +9,19 @@
                     @csrf
                     <p class="p1">Добро пожаловать!</p>
                     <div class="inp">
+                        <div class="inp__div">
                         <label for="name">ФИО</label>
                         <input name="name" type="text" placeholder="" />
+                        </div>
                         @error('name')
                         <p >{{ $message }}</p>
                         @enderror
                         </div>
                     <div class="inp">
-                    <label for="username">Имя пользователя</label>
-                    <input name="username" type="text" placeholder="" />
+                        <div class="inp__div">
+                            <label for="username">Имя пользователя</label>
+                            <input name="username" type="text" placeholder="" />  
+                        </div>
                     @error('username')
                     <p >{{ $message }}</p>
                     @enderror
