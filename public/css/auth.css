@@ -1,0 +1,57 @@
+.auth_container{
+    padding: 100px 0;
+}
+#login-form{
+align-items: center;
+width: 564px;
+min-height: 530px;
+margin:0 auto;
+background-color: var(--main-color-background);
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+padding: 60px 40px;
+}
+#form-signup{
+    width: 564px;
+    min-height: 817px;
+    align-items: center;
+    margin: 0 auto;
+    background-color: var(--main-color-background);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 60px 40px;
+}
+input, select{
+    width: 255px;
+    height: 55px;
+    background: var(--main-color-background);
+    color: var(--burgundy-color);
+    padding-left: 20px;
+    border: 2px solid var(--burgundy-color);
+    opacity: 1;
+}
+::placeholder{
+    opacity: 1;
+    color: var(--burgundy-color);
+}
+.p1{
+    color: var(--burgundy-color);
+}
+form a{
+    color: var(--burgundy-color);
+    font-weight: 500;
+} 
+form a:hover{
+    color: var(--main-text);
+    font-weight: 500;
+} 
+.inp{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.inp label{
+    color: var(--burgundy-color);
+}

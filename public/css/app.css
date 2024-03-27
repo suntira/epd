@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@200;400;700&family=Raleway:wght@400;500;600;700&display=swap');
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+:root {
+    font-size: 16px;
+    --main-color-background: #B39B9C;
+    --pink-color:#FFDEE0;
+    --main-color:#615455;
+    --light-grey-color:#DBBFC0;
+   --burgundy-color : #46191B;
+    --main-text: #f5f5f5FF;
+}
+body{
+    background-color: var(--main-color-background);
+}
+.p1{
+    color: var(--main-text);
+text-align: center;
+font-family: Bitter;
+font-size: 2.4rem;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+p{
+    color: var(--main-text);
+    text-align: center;
+    font-family: Bitter;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 150%; 
+    }
+a, label{
+    color: var(--main-text);
+    font-family: Bitter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    text-decoration: none;
+}
+a:hover, label:hover{
+    color: var(--burgundy-color);
+    font-weight: 500;
+}
+ul {
+    list-style: none; 
+    padding: 0; 
+}
+li {
+    margin-bottom: 10px; 
+}
+button{
+    width: 255px;
+    height: 55px;
+    color: var(--main-text);
+    text-align: center;
+    border: none;
+    font-family: Bitter;
+    font-size: 1rem;
+    font-weight: 300;
+    }
+
+.btn_white{
+    background-color: rgb(25,23,3,0);
+    border: 2px solid var(--main-text);
+    }
+.btn_white:hover{
+    border: 2px solid var(--burgundy-color);
+    color: var(--burgundy-color);
+    font-weight: 400;
+    }
+.btn_red{
+    background-color: var(--burgundy-color);
+    }
+.btn_red:hover{
+        opacity: 0.5;
+        background-color: var(--burgundy-color);
+        color: var(--main-text);
+    }
+.section{
+    min-height: 100vh;
+    align-items: center;
+    }
+.container{
+    width: 90%;
+    background-color: var(--main-color);
+    margin: 0 auto;
+    }
+    .srch_btn{
+        width: 55px;
+        height: 55px;
+
+    }

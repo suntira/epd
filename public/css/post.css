@@ -1,0 +1,80 @@
+.wrap{
+padding: 100px 0;
+margin: 0 40px;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 120px;
+}
+
+input, select{
+    height: 55px;
+    background: var(--main-color-background);
+    color: var(--burgundy-color);
+    letter-spacing: .1rem;
+    border: 2px solid var(--burgundy-color);
+    opacity: 1;
+    padding: 10px;
+}
+select{
+    width: 205px;
+}
+::placeholder{
+    opacity: 1;
+    color: var(--burgundy-color);
+}
+label{
+    color: var(--burgundy-colo);
+    font-size: .8rem;
+    font-weight: 300;
+    letter-spacing: .1rem;
+}
+label:hover{
+        color: var(--burgundy-colo);
+        font-size: .8rem;
+        font-weight: 300;
+        letter-spacing: .1rem;
+    
+}
+.filter_cont{
+    padding: 40px 20px;
+    display: flex;
+    background-color: var(--main-color-background);
+    border: 7px solid var(--main-color);
+    justify-content: center;
+    gap: 65px;
+    }
+.fil{
+display: flex;
+flex-direction: column;
+gap: 5px;
+    }
+#fil_2{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 20px;
+    }
+.fil2_cont{
+display: flex;
+gap: 20px;
+}
+#fil_1{
+    display: flex;
+   
+}
+.f_cl_1{
+    display: flex;
+    margin-top: 20px;
+}
+input{
+width: 355px;
+}
+.btn_f1{
+    width: 55px;
+    height: 55px;
+}
+.filt_btn{
+    width: 205px;
+}
