@@ -9,15 +9,19 @@
                     <p class="p1">Добро пожаловать!</p>
                     @csrf
                     <div class="inp">
+                        <div class="inp__div">
                         <label for="email">Почта</label>
                     <input name="email" type="text" placeholder="Email" />
+                </div>
                     @error('email')
                     <p >{{ $message }}</p>
                     @enderror
                     </div>
                     <div class="inp">
+                        <div class="inp__div">
                         <label for="password">Пароль</label>
                         <input name="password" type="password" placeholder="" />
+                        </div>
                         @error('password')
                         <p >{{ $message }}</p>
                         @enderror

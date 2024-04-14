@@ -27,7 +27,7 @@ Route::middleware("auth")->group(function () {
     Route::get('/profile/edit', [\App\Http\Controllers\UserController::class, 'edit'])->name('user.edit');
     Route::post('/profile/update', [\App\Http\Controllers\UserController::class, 'update'])->name('user.update');
     Route::get('/user/{id}', [\App\Http\Controllers\UserController::class, 'show'])->name('user.usershow');
-    // Route::get('/posts', [\App\Http\Controllers\PostController::class, 'like'])->name('posts.index');
+     Route::post('/posts/like/{post}', [\App\Http\Controllers\PostController::class, 'like'])->name('posts.like');
 });
 Route::middleware("guest")->group(function () {
     Route::get('/register', [\App\Http\Controllers\AuthController::class,'showRegisterForm'])->name('register');

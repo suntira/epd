@@ -11,29 +11,32 @@
                     <div class="inp">
                         <div class="inp__div">
                         <label for="name">ФИО</label>
-                        <input name="name" type="text" placeholder="" />
-                        </div>
+                        <input name="name" type="text" placeholder="" />                
+                    </div>
                         @error('name')
                         <p >{{ $message }}</p>
                         @enderror
                         </div>
                     <div class="inp">
                         <div class="inp__div">
-                            <label for="username">Имя пользователя</label>
-                            <input name="username" type="text" placeholder="" />  
-                        </div>
+                    <label for="username">Имя пользователя</label>
+                    <input name="username" type="text" placeholder="" />
+                </div>
                     @error('username')
                     <p >{{ $message }}</p>
                     @enderror
                     </div>
                     <div class="inp">
+                        <div class="inp__div">
                     <label for="email">Почта</label>
                     <input name="email" type="text" placeholder="" />
+                 </div>
                     @error('email')
                     <p >{{ $message }}</p>
                     @enderror
                     </div>
                     <div class="inp">
+                        <div class="inp__div">
                         <label for="role">Роль</label>
                         <select name="role_id">
                             @foreach ($roles as $role)
@@ -41,16 +44,21 @@
                             @endforeach
                             </select>
                         </div>
+                    </div>
                     <div class="inp">
+                        <div class="inp__div">
                         <label for="password">Пароль</label>
                         <input name="password" type="password" placeholder="" />
+                    </div>
                         @error('password')
                         <p >{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="inp">
+                        <div class="inp__div">
                         <label for="password_confirmation">Подтверждение пароля</label>
                         <input name="password_confirmation" type="password" placeholder="" />
+                    </div>
                         @error('password_confirmation')
                         <p >{{ $message }}</p>
                         @enderror

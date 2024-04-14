@@ -37,10 +37,10 @@ class AuthController extends Controller
    public function register(Request $request)
    {
       $data = $request->validate([
-        "name" =>["required", "string"],
+        "name" =>["required", "string", 'regex:/^[а-яА-я\s]+$/u'],
         "username" =>["required", "string", "unique:users,username"],
         "email" => ["required", "email", "string", "unique:users,email"],
-        "password"  => ["required", "confirmed"], 
+        "password"  => ["required", "min:6", "confirmed"], 
         "role_id" => ["required", "integer"]
       ]);
       $user = User::create([

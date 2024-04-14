@@ -22,9 +22,11 @@ class PostController extends Controller
         $subjects = Subject::all();
         $data = $request->validated();
          $filter = app()->make(PostFilter::class, ['queryParams' =>array_filter($data)]);
-         $posts = Post::filter($filter)->paginate(6);
+         $posts = Post::where('status_id', 2)
+         ->filter($filter)
+         ->orderBy('created_at', 'desc')
+         ->paginate(6);
         return view('posts.index', compact(['posts', 'types', 'subjects', 'levls' ]));
-
     }
     public function show($id) 
     {
@@ -38,8 +40,8 @@ class PostController extends Controller
         $steps = Step::where('post_id', $postId)->orderBy('order')->paginate(1); 
         return view('step.show', compact('steps')); 
     }
-    // public function like(Post $post){
-    //     auth()->user()->LikedPosts()->toggle($post->id);
-
-    // }
+    public function like(Post $post){
+      auth()->user()->favorites()->toggle($post->id);
+       return redirect()->back();
+     }
 }

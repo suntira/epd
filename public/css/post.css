@@ -78,3 +78,18 @@ width: 355px;
 .filt_btn{
     width: 205px;
 }
+.p_avtor{
+    margin-top: 3px;
+    font-weight: 300;
+        letter-spacing: .1rem;
+}
+.btn_like{
+    border: none;
+    margin-top: 6px;
+    height: auto;
+    letter-spacing: .07rem; 
+  
+}
+.btn_like:hover{
+    border: none;
+}

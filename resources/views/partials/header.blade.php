@@ -28,7 +28,8 @@
                     <nav class="nav">
                         <ul>
                             @auth("web")
-                            <li><a href="#">Профиль</a></li>
+                            <li><a href="{{ route('user.show') }}">Профиль</a></li>
+                            <li><a href="{{ route('user.show') }}">Избранное</a></li>
                             <li><a href="{{ route('logout') }}">Выйти</a></li>
                             @endauth
                             @guest("web")

@@ -52,11 +52,9 @@ form a:hover{
     flex-direction: column;
     gap: 2px;
 }
-
 .inp{
-    align-items: center;
+align-items: center;
 }
-
 .inp label{
     color: var(--burgundy-color);
 }

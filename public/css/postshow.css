@@ -70,3 +70,16 @@ p{
 form{
     margin: 0 auto;
     }
+.panel{
+    display: flex;
+    justify-content: space-between;
+}
+.btn_stop{
+    margin-top: 20px;
+  display: flex;
+  justify-content: end;
+  margin-right: 40px;
+}
+.btn_back {
+    margin: 0 0 20px 80px;
+}
