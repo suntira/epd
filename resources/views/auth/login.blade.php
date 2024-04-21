@@ -35,8 +35,6 @@
             </div>
         </div>
               </div>              
-    </div>
-</div>
 <link href="{{ asset('css/auth.css') }}" rel="stylesheet">
               @include('partials.footer')
               @endsection

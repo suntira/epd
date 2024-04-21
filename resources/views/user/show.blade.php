@@ -4,29 +4,60 @@
 @include('partials.header')
 <div class="container">
     <div class="section">
-       <h1>User Profile</h1>
-      <img src="{{ $user->profile }}" alt="">
-       <p>Имя: {{ $user->name}}</p>
-       <p>Ник: {{ $user->username }}</p>
-       <p>О Себе: {{ $user->bio}}</p>
-       <p>Роль: {{ $user->role->type }}</p>
-       <a href="{{ route('user.edit') }}">Edit Profile</a>
-       <!-- Другие данные пользователя -->
-       @if( $user->role_id === 2)
-       <h2>Ваши уроки:</h2>
-       <div class="profile_post_cont">
-        @if ($posts->isNotEmpty())
-        @foreach($posts as $post)
-        @include("posts.partials.item", ["post" => $post])
-         @endforeach
+      <div class="profile">
+      <div class="profile_cont">
+        <div class="img-line">
+          <div class="line"></div>
+          <img src="{{ asset('storage/' . $user->profile) }}" alt="Profile Picture" class="img_profile">
+        </div>
+        <div class="cont_des">
+          <div class="des profile__des">
+            <p class="p_des">Имя:</p>
+            <p class="p_name"> {{ $user->name}}</p>
+           </div>
+           <div class="des profile__des">
+             <p class="p_des">Ник:</p>
+             <p class="p_name"> {{ $user->username }}</p>
+            </div>
+            <div class="des profile__des">
+             <p class="p_des">О Себе:</p>
+             <p class="p_name"> {{ $user->bio}}</p>
+            </div>
+            <div class="des profile__des">
+             <p class="p_des">Роль:</p>
+             <p class="p_name"> {{ $user->role->type }}</p>
+            </div>
+            <form action="{{ route('user.edit') }}">
+             <button type="submit" class="btn_red">Редактировать профиль</button>
+         </form> 
+           </div>
+        </div>
+      </div>
+      <p class="post-name">Ваши избранные уроки:</p>
+      <div class="profile_post_cont">
+       
+        @if ($favorites->isNotEmpty())
+          @foreach($favorites as $post)
+          @include("posts.partials.item", ["post" => $post])
+          @endforeach 
          @else
-         <p>у Вас нет уроков</p>
-         @endif
-         
-       </div>
-       {{$posts->withQueryString()->links()}} 
+         <p class="p_not_found">у Вас нет избранных уроков</p>
           @endif
-
+        </div>
+       <a class="btn_stop like" href="{{ route('posts.favorites', ['userId' => $user->id]) }}">Перейти на страницу избранные уроки</a>
+         @if( $user->role_id === 2)
+         <p class="post-name">Ваши уроки:</p>
+         <div class="profile_post_cont">
+          @if ($posts->isNotEmpty())
+          @foreach($posts as $post)
+          @include("posts.partials.item", ["post" => $post])
+           @endforeach
+           @else
+           <p class="p_not_found">у Вас нет уроков</p>
+           @endif
+         </div>
+            @endif
+            <a class="btn_stop like" href="">Перейти на страницу редактирования уроков</a>
     </div>
 </div>
 <link href="{{ asset('css/profile.css') }}" rel="stylesheet">

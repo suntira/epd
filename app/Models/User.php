@@ -57,4 +57,5 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Post::class, 'favorites', 'user_id', 'post_id');
     }
+    
 }

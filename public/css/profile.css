@@ -5,3 +5,104 @@ flex-wrap: wrap;
 justify-content: center;
 gap: 20px;
 }
+.profile_cont{
+    padding: 100px  auto;
+    gap: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; /* Для выравнивания текста в центре */
+}
+.img_profile{
+    width: 255px;
+    height: 305px;
+}
+.line{
+    margin-top: -40px;
+    margin-right: -240px;
+    border: 4px solid var(--burgundy-color) ;
+    width: 255px;
+    height: 305px;
+}
+.img-line{
+    display: flex;
+}
+/* .des{
+    display: flex;
+
+    gap: 10px;
+    margin-top: 10px;
+} */
+.cont_des{
+    display: flex;
+  flex-direction: column;
+  gap: 20px;
+margin: 0 auto;
+}
+/* .p_name{
+   
+    font-weight: 300;
+    letter-spacing: .1rem;
+}
+.p_des{
+    font-weight: 600;
+    color: var(--burgundy-color);
+} */
+.profile{
+display: flex;
+justify-content: center;
+padding: 100px 0 0 0;
+
+
+}
+.profile__des{
+    max-width: 405px;
+    width: 100%;
+    min-height: 20px;
+    height: auto;
+}
+.des {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .profile__des {
+    width: 405px;
+    word-wrap: break-word;
+  }
+  
+  .p_des {
+    font-weight: 600;
+    color: var(--burgundy-color);
+    margin-right: 10px;
+    min-width: 70px;
+  }
+  
+  .p_name {
+    width: 100%;
+     /* чтобы текст переносился на новую строку при необходимости */
+     text-align: left;
+     font-weight: 300;
+     letter-spacing: .1rem;
+  }
+  .post-name{
+    margin: 40px 0 0 40px;
+    font-weight: 500;
+    margin-top: 20px;
+    color: var(--burgundy-color);
+text-align: left;
+    font-family: Bitter;
+    font-size: 1.75rem;
+}
+.btn_stop {
+    margin-top: 20px;
+    display: flex;
+    justify-content: end;
+    margin-right: 40px;
+} 
+.like {
+    color: var( --main-text);
+    font-weight: 300;
+    letter-spacing: .1rem;
+  
+}

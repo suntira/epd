@@ -8,6 +8,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Models\Step;
 use App\Models\Levl;
+use App\Models\User;
 use App\Models\Status;
 use App\Models\Subject;
 use App\Models\Type;
@@ -30,9 +31,11 @@ class PostController extends Controller
     }
     public function show($id) 
     {
+        $user = auth()->user();
         $post = Post::findOrFail($id);
         return view('posts.show', [
             "post" => $post,
+            'user'=> $user
         ]);
     }
     public function showStep($postId)
@@ -43,5 +46,21 @@ class PostController extends Controller
     public function like(Post $post){
       auth()->user()->favorites()->toggle($post->id);
        return redirect()->back();
+     }
+     public function showFavorites($userId)
+     {
+        $user = User::findOrFail($userId);
+         $favorites = $user->favorites()->paginate(6);
+         $currentUser = auth()->user(); // Получаем текущего аутентифицированного пользователя
+    
+         // Проверяем, соответствует ли текущий пользователь запрашиваемому userId
+         if ($currentUser->id == $userId) {
+             // Если нет, возвращаем сообщение об ошибке или перенаправляем на другую страницу
+             
+             return view('posts.favorites', ['user' => $user, 'favorites' => $favorites]);
+         } else{
+            return redirect()->route('user.show')->with('error', 'У вас нет доступа к избранным постам других пользователей');
+         }
+     
      }
 }
