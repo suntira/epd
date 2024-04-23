@@ -57,5 +57,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Post::class, 'favorites', 'user_id', 'post_id');
     }
-    
+    public function getImageURL(){
+        if($this->profile){
+            return url('storage/' .$this->profile);
+        }
+        return "img/avatars.jpg";
+    }
 }

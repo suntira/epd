@@ -36,13 +36,11 @@ class UserController extends Controller
           ]);
           if ($request->hasFile('profile')) {
             $profileName = $request->file('profile')->getClientOriginalName();
-            // $path = $request->file('profile')->store('upload', 'public');
             $path = $request->file('profile')->storeAs('profile', $profileName, 'public');
             $validated['profile'] =  $path;
-            // $user->profile = $path;
         }
         $user->update($validated);
-        return redirect()->route('user.show', ['user' => $user, 'path' =>   $path])->with('success', 'Profile updated successfully.');
+        return redirect()->route('user.show')->with('success', 'Profile updated successfully.');
     }
     public function show($id)
     {

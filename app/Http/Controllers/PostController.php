@@ -13,7 +13,7 @@ use App\Models\Status;
 use App\Models\Subject;
 use App\Models\Type;
 use App\Models\Favorite;
-
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -63,4 +63,52 @@ class PostController extends Controller
          }
      
      }
+    public function create()
+{
+    if (auth()->user()->role_id == 2) {
+    $types= Type::get(['id','name' ]);
+    $subjects= Subject::get(['id','name' ]);
+    $levls= Levl::get(['id','name' ]);
+    return view('posts.create',compact([ 'types', 'subjects', 'levls' ]) );
+} else {
+    return redirect()->route('home'); // перенаправляем пользователя на главную страницу
+}
+}
+public function storePost(Request $request)
+{
+    $userId = auth()->id();
+    $data = $request->validate([
+        "name_post" =>["required", "string", 'regex:/^[а-яА-яA-Za-z\s]+$/u'],
+        "description" =>["required", "string", 'regex:/^[а-яА-яA-Za-z\s]+$/u'],
+        "img_title" => ["required",'image:jpg, jpeg, png'],
+        "type_id" => ["required", "integer"],
+        "subject_id" => ["required", "integer"],
+        "levl_id" => ["required", "integer"],
+      ]);
+      if ($request->hasFile('img_title')) {
+        $profileName = $request->file('img_title')->getClientOriginalName();
+        $path = $request->file('img_title')->storeAs('img_title', $profileName, 'public');
+        $data['img_title'] =  $path;
+    }
+    $post = Post::create([
+        "user_id" => $userId,
+        'name_post' => $request->input('name_post'),
+        "description" =>$request->input('description'),
+        "img_title" => $path,
+        "type_id" => intval($data["type_id"]),
+        "subject_id" => intval($data["subject_id"]),
+        "levl_id" => intval($data["levl_id"]),
+        "status_id" => 1,// Устанавливаем поле status_id в 1
+        "created_at" => Carbon::now(), // Устанавливаем поле created_at на текущее время
+    ]);
+    return redirect()->route('posts.show', $post->id);
+}
+public function myPosts(){
+    if (auth()->user()->role_id == 2) {
+        $posts = Post::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->paginate(5);
+        return view('posts.my', compact('posts')); 
+    } else {
+        return redirect()->route('home');// отправляем пользователя на главную страницу 
+    }
+}
 }

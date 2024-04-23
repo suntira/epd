@@ -8,7 +8,7 @@
       <div class="profile_cont">
         <div class="img-line">
           <div class="line"></div>
-          <img src="{{ asset('/storage/' . $user->profile)}}" alt="" class="img_profile">
+          <img src="{{$user->getImageURL()}}" alt="" class="img_profile">
         </div>
         <div class="cont_des">
            <div class="des profile__des">

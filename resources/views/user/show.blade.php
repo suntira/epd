@@ -8,7 +8,7 @@
       <div class="profile_cont">
         <div class="img-line">
           <div class="line"></div>
-          <img src="{{ asset('storage/' . $user->profile) }}" alt="Profile Picture" class="img_profile">
+          <img src="{{$user->getImageURL()}}" alt="Profile Picture" class="img_profile">
         </div>
         <div class="cont_des">
           <div class="des profile__des">
@@ -56,8 +56,9 @@
            <p class="p_not_found">у Вас нет уроков</p>
            @endif
          </div>
+         <a class="btn_stop like" href="{{ route('posts.my') }}">Перейти на страницу редактирования уроков</a>
             @endif
-            <a class="btn_stop like" href="">Перейти на страницу редактирования уроков</a>
+           
     </div>
 </div>
 <link href="{{ asset('css/profile.css') }}" rel="stylesheet">

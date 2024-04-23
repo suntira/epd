@@ -10,6 +10,17 @@ class Post extends Model
 {
     use HasFactory;
     use Filterable;
+    protected $fillable = [
+        'name_post',
+        'img_title',
+        'created_at',
+        'status_id',
+        'user_id',
+        'type_id',
+        'subject_id',
+        'levl_id',
+        'description',
+    ];
     public function steps()
     {
         return $this->hasMany(Step::class, 'step_id', 'id');

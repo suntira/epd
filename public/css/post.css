@@ -93,3 +93,15 @@ width: 355px;
 .btn_like:hover{
     border: none;
 }
+.btn_create {
+   border: 2px solid var(--burgundy-color);
+    width: 340px;
+    height: 515px;
+color: var(--main-text);
+background: rgb(145, 93, 93, 0);
+font-size: 6rem;
+font-weight: 200;
+}
+#form_create_btn{
+    margin: 0;
+}

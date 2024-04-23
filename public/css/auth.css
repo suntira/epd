@@ -1,7 +1,7 @@
 .auth_container{
     padding: 100px 0;
 }
-#login-form, #update-form{
+#login-form{
 align-items: center;
 width: 564px;
 min-height: 530px;
@@ -12,9 +12,8 @@ flex-direction: column;
 justify-content: space-around;
 padding: 60px 40px;
 }
-#form-signup{
+#form-signup, #update-form, #create-post-form{
     width: 564px;
-    min-height: 817px;
     align-items: center;
     margin: 0 auto;
     background-color: var(--main-color-background);
@@ -22,6 +21,12 @@ padding: 60px 40px;
     flex-direction: column;
     justify-content: space-around;
     padding: 60px 40px;
+}
+#form-signup{
+    min-height: 817px;
+}
+#update-form, #create-post-form{
+    min-height: 1017px;
 }
 input, select{
     width: 255px;
@@ -57,4 +62,15 @@ align-items: center;
 }
 .inp label{
     color: var(--burgundy-color);
+}
+#file-upload-button{
+    width: 255px;
+    height: 55px;
+    background: var(--main-color-background);
+    color: var(--burgundy-color);
+    border: 2px solid var(--burgundy-color);
+}
+.img_profile{
+    width: 255px;
+    height: 305px;
 }

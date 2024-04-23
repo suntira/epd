@@ -14,7 +14,9 @@
            <!-- Форма для редактирования данных пользователя -->
            <label for="profile">Аватрака:</label>
            <input type="file" id="profile" name="profile" value="{{ $user->profile }}">
-           
+           @if(auth()->user()->profile)
+    <img src="{{ asset('storage/' . auth()->user()->profile) }}" alt="img_title" class="img_profile">
+@endif
         </div>
         @error('profile')
         <p >{{ $message }}</p>

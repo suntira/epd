@@ -2,7 +2,7 @@
 <div class="post_container">
     <div class="post_container_content"></div>   
             <p class="post_name">{{$post->name_post}}</p>
-        <img class="post_title" src="{{$post->img_title}}">
+        <img class="post_title" src="{{ asset('storage/' . $post->img_title) }}">
         <div class="username_cont">
             <p class="post_avtor">Автор:</p>
                 <a class="p_avtor" href="{{ route('user.usershow', ['id' => $post->users->id]) }}">{{ $post->users->username }}</a>
