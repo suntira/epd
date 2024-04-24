@@ -14,7 +14,7 @@ use App\Models\Subject;
 use App\Models\Type;
 use App\Models\Favorite;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\Validator;
 class PostController extends Controller
 {
     public function index(FilterRequest $request)
@@ -109,6 +109,54 @@ public function myPosts(){
         return view('posts.my', compact('posts')); 
     } else {
         return redirect()->route('home');// отправляем пользователя на главную страницу 
+    }
+ }
+public function createStepForm($postId)
+{
+    $post = Post::find($postId);
+    $currentUser = auth()->user();
+    if ($post && $currentUser->id === $post->user_id ) {
+        if ($post->steps()->exists()) {
+            $steps = Step::where('post_id', $postId)->orderBy('order')->paginate(1);
+            return redirect()->route('step.show', ['postId' => $postId, 'steps' => $steps]);
+        } else {
+            return view('posts.steps.create', ['post' => $post,'postId' => $postId ]);
+        }
+    } else {
+        return redirect()->route('home');
+    }
+}
+public function storeStep(Request $request, $postId) {
+    $post = Post::find($postId);
+    $currentUser = auth()->user();
+
+    if ($post && $currentUser->id === $post->user_id) {
+        $data = $request->validate([
+            'steps.*.text_st' => ['required', 'string', 'regex:/^[а-яА-яA-Za-z\s]+$/u'],
+            'steps.*.img_st' => ['required', 'image', 'mimes:jpg,jpeg,png'],
+            'steps.*.order' => ['required', 'integer']
+        ]);
+
+        $paths = [];
+
+        foreach ($request->file('steps') as $step) {
+            $profileName = $step['img_st']->getClientOriginalName();
+            $path = $step['img_st']->storeAs('img_st', $profileName, 'public');
+            $paths[] = $path;
+        }
+
+        foreach ($data['steps'] as $key => $step) {
+            Step::create([
+                'order' => $step['order'],
+                'text_st' => $step['text_st'],
+                'img_st' => $paths[$key],
+                'post_id' => $postId
+            ]);
+        }
+
+        return redirect()->route('posts.index')->with('success', 'Шаги успешно добавлены');
+    } else {
+        return redirect()->route('home')->with('error', 'Ошибка доступа');
     }
 }
 }

@@ -12,7 +12,8 @@ flex-direction: column;
 justify-content: space-around;
 padding: 60px 40px;
 }
-#form-signup, #update-form, #create-post-form{
+
+#form-signup, #update-form, #create-post-form, #create-steps-form{
     width: 564px;
     align-items: center;
     margin: 0 auto;
@@ -25,7 +26,7 @@ padding: 60px 40px;
 #form-signup{
     min-height: 817px;
 }
-#update-form, #create-post-form{
+#update-form, #create-post-form, #create-steps-form{
     min-height: 1017px;
 }
 input, select{

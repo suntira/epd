@@ -6,9 +6,10 @@
         <form class="f1_i_p" action="{{route("posts.show", $post->id)}}">
             <button type="submit" class="btn_red">Подробнее</button>
         </form> 
-        <p>{{$post->statuses->name}}</p>
+        @if( $post->status_id === 2)
         <form class="f1_i_p" action="">
             <button type="submit" class="btn_white btn_like">Редактировать</button>
         </form> 
-
+        @endif
+        <p class="p_status">{{$post->statuses->name}}</p>
 </div>

@@ -22,6 +22,7 @@ Route::get('/posts', [\App\Http\Controllers\PostController::class, 'index'])->na
 Route::middleware("auth")->group(function () {
     Route::get('/posts/my', [\App\Http\Controllers\PostController::class, 'myPosts'])->name('posts.my');
     Route::get('/posts/create', [\App\Http\Controllers\PostController::class, 'create'])->name('posts.create');
+    Route::get('/posts/{post}/steps/create', [\App\Http\Controllers\PostController::class, 'createStepForm'])->name('posts.steps.create');
     Route::post('/posts/new',  [\App\Http\Controllers\PostController::class, 'storePost'])->name('posts.store');
     Route::get('/logout', [\App\Http\Controllers\AuthController::class,'logout'])->name('logout');
     Route::get('/posts/{id}', [\App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
@@ -32,8 +33,8 @@ Route::middleware("auth")->group(function () {
     Route::get('/user/{id}', [\App\Http\Controllers\UserController::class, 'show'])->name('user.usershow');
     Route::post('/posts/like/{post}', [\App\Http\Controllers\PostController::class, 'like'])->name('posts.like');
     Route::get('/{userId}/favorites', [\App\Http\Controllers\PostController::class, 'showFavorites'])->name('posts.favorites');
-    // Route::get('/posts/{post}/steps/create', 'PostController@createStepForm')->name('posts.steps.create');
-    // Route::post('/posts/{post}/steps', 'PostController@storeStep')->name('posts.steps.store');
+    Route::post('/posts/{post}/steps/store', [\App\Http\Controllers\PostController::class, 'storeStep'])->name('posts.steps.store');
+//  Route::post('/posts/{post}/steps', [\App\Http\Controllers\PostController::class, 'store'])->name('posts.steps.store');
 
 });
 Route::middleware("guest")->group(function () {

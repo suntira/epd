@@ -23,7 +23,7 @@ class Post extends Model
     ];
     public function steps()
     {
-        return $this->hasMany(Step::class, 'step_id', 'id');
+        return $this->hasMany(Step::class, 'post_id', 'id');
     }
     public function statuses()
     {

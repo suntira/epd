@@ -8,9 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Step extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'text_st',
+        'img_st',
+        'order',
+        'post_id',
+    ];
     public function post()
     {
-        return $this->belongsTo(Post::class, 'step_id', 'id');
+        return $this->belongsTo(Post::class, 'post_id', 'id');
     }
 
 }
