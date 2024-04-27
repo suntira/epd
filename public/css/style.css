@@ -49,3 +49,7 @@ margin-right: -40px;
   position: relative;
 }
 
+.active {
+    color: var(--burgundy-color); /* Замените этот цвет на ваш */
+    /* Дополнительные стили для активной ссылки */
+}

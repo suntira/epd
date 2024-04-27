@@ -29,7 +29,7 @@
 <div class="inp">
     <div class="inp__div">
     <label for="img_title">Главное изображение</label>
-    <input type="file"  name="img_title" placeholder="Изображение">
+    <input type="file" class="inpt_file" name="img_title" placeholder="Изображение">
 </div>
 @error('img_title')
 <p >{{ $message }}</p>

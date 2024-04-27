@@ -6,13 +6,13 @@
     <div class="section">
         <div class="auth_container">
             <form action="{{ route('posts.steps.store', ['post' => $post->id]) }}" id="create-steps-form" method="post" enctype="multipart/form-data">
-                <p class="p1">Создание урока</p>
+                <p class="p1">Добавление шагов</p>
                 @csrf
                 <div class="steps" id="steps-container">
                     <!-- Здесь будут динамически добавленные поля -->
                 </div>
-                <button type="button" class="btn_red" onclick="addStep()">Добавить шаг</button>
-                <button type="submit" class="btn_red" id="create-lesson-btn" style="display: none;">Создать урок</button>
+                <button type="button" class="btn_red option" onclick="addStep()">Добавить шаг</button>
+                <button type="submit" class="btn_red" id="create-lesson-btn" style="display: none;">Создать шаги</button>
             </form>
             
             <script>
@@ -32,6 +32,7 @@
                     imgInput.type = 'file';
                     imgInput.name = 'steps[' + stepIndex + '][img_st]';
                     imgInput.placeholder = 'Изображение шага ' + (stepIndex + 1);
+                    imgInput.className += ' inpt_file';
             
                     var orderInput = document.createElement('input');
                     orderInput.type = 'hidden'; // Меняем тип на скрытый
@@ -39,11 +40,12 @@
                     orderInput.value = stepIndex + 1; // Присваиваем порядковый номер шага
             
                     var orderLabel = document.createElement('label');
-                    orderLabel.textContent = 'Номер шага ' + (stepIndex + 1);
+                    orderLabel.textContent = ' Шаг ' + (stepIndex + 1);
             
+                    stepDiv.appendChild(orderLabel); 
                     stepDiv.appendChild(textInput);
                     stepDiv.appendChild(imgInput);
-                    stepDiv.appendChild(orderLabel); // Добавляем метку
+                // Добавляем метку
                     stepDiv.appendChild(orderInput); // Добавляем скрытое поле
             
                     stepsContainer.appendChild(stepDiv);

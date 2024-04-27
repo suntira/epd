@@ -10,7 +10,7 @@
     <p class="p_not_found favoriter_p-not-fount">Нет шагов</p>
 @else
 @foreach ($steps as $step)
-<img class="img_title" src="{{$step->img_st}}">
+<img class="img_title" src=" {{asset('storage/' .$step->img_st)}}">
 <p class="description">{{$step->text_st}}</p>
 @endforeach
 {{ $steps->links() }}

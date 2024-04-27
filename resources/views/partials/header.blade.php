@@ -18,8 +18,8 @@
         <div class="container_first">
             <div class="navigation">
                 <div class="nav-main-inf">
-                    <a href="{{route("home")}}">Главная</a>
-                    <a href="{{route("posts.index")}}">Уроки</a>
+                    <a  class="{{ request()->is('/') ? 'active' : '' }}" href="{{route("home")}}">Главная</a>
+                    <a href="{{route("posts.index")}}" class="{{ request()->is('/posts') ? 'active' : '' }}">Уроки</a>
                 </div>
                 <p class="nav-p-inf">étape pour dessiner</p>
                 <div class="nav-profile-inf">
@@ -28,12 +28,12 @@
                     <nav class="nav">
                         <ul>
                             @auth("web")
-                            <li><a href="{{ route('user.show') }}">Профиль</a></li>
+                            <li><a href="{{ route('user.show') }} " class="{{ request()->is('/profile') ? 'active' : '' }}">Профиль</a></li>
                             <li><a href="{{ route('logout') }}">Выйти</a></li>
                             @endauth
                             @guest("web")
-                            <li><a href="{{ route('login') }}">Войти</a></li>
-                            <li><a href="{{ route("register") }}">Регистрация</a></li>
+                            <li><a href="{{ route('login') }} " class="{{ request()->is('/login') ? 'active' : '' }}">Войти</a></li>
+                            <li><a href="{{ route("register") }}" class="{{ request()->is('/register') ? 'active' : '' }}">Регистрация</a></li>
                             @endguest
                         </ul>
                     </nav>

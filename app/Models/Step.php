@@ -14,6 +14,7 @@ class Step extends Model
         'order',
         'post_id',
     ];
+    protected $primaryKey = 'id';
     public function post()
     {
         return $this->belongsTo(Post::class, 'post_id', 'id');

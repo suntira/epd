@@ -61,6 +61,7 @@ button{
     font-family: Bitter;
     font-size: 1rem;
     font-weight: 300;
+
     }
 
 .btn_white{
@@ -106,8 +107,30 @@ button{
     letter-spacing: .1rem;
     font-size: 1.25rem;
 }
-}
+
 .favoriter_p-not-fount{
   font-size: 2.5rem;
     padding: 100px 0 0 0;
+}
+::-webkit-file-upload-button{
+    background-color: var(--main-color-background);
+    color: var(--burgundy-color);
+    text-align: center;
+    border-right: 2px solid var(--burgundy-color);
+    border-top: none;
+    border-left: none;
+    font-family: Bitter;
+    height: 55px;
+}
+.inpt_file{
+    padding: 0;
+    
+}
+.img_post{
+    margin-top: 5px;
+    height: 310px;
+    width: 438.5px;
+}
+.option{
+    opacity: 0.5;
 }

@@ -55,17 +55,17 @@
             </div>
      
     </div>
-    @if ($posts->isNotEmpty()){
+    @if ($posts->isNotEmpty())
         <div class="wrap" id="wrap">
             @foreach($posts as $post)
             @include("posts.partials.item", ["post" => $post])
             @endforeach 
         </div>
          {{$posts->withQueryString()->links()}} 
-    }
-    @else {
+    
+    @else 
         <p class="p_not_found favoriter_p-not-fount">По вашему запросу ничего не найдено</p>
-    }
+    
     @endif
 </div>
 </div>

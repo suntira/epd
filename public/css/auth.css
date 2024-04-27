@@ -13,7 +13,7 @@ justify-content: space-around;
 padding: 60px 40px;
 }
 
-#form-signup, #update-form, #create-post-form, #create-steps-form{
+#form-signup, #update-form, #create-post-form {
     width: 564px;
     align-items: center;
     margin: 0 auto;
@@ -23,10 +23,22 @@ padding: 60px 40px;
     justify-content: space-around;
     padding: 60px 40px;
 }
+#create-steps-form, #update-post-form{
+    align-items: center;
+    margin: 0 auto;
+    background-color: var(--main-color-background);
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 60px 40px;
+    min-height: 405px;
+    border: 6px solid var(--main-color);
+    border-bottom: none;
+}
 #form-signup{
     min-height: 817px;
 }
-#update-form, #create-post-form, #create-steps-form{
+#update-form, #create-post-form, #update-post-form{
     min-height: 1017px;
 }
 input, select{
@@ -37,6 +49,7 @@ input, select{
     padding-left: 20px;
     border: 2px solid var(--burgundy-color);
     opacity: 1;
+    font-family: Bitter;
 }
 ::placeholder{
     opacity: 1;
@@ -61,7 +74,7 @@ form a:hover{
 .inp{
 align-items: center;
 }
-.inp label{
+.inp label, .inp_container label{
     color: var(--burgundy-color);
 }
 #file-upload-button{
@@ -72,6 +85,44 @@ align-items: center;
     border: 2px solid var(--burgundy-color);
 }
 .img_profile{
+    margin-top: 5px;
     width: 255px;
     height: 305px;
+}
+.step {
+    display: flex;
+    gap: 10px
+}
+.step label{
+    color: var(--burgundy-color);
+    font-size: 1.5rem;
+    margin: 10px;
+}
+.btn_back {
+    padding: 20px 0 0  80px;
+}
+.like{
+    color: var(--burgundy-color);
+    font-weight: 300;
+    letter-spacing: .1rem;
+    margin: 0 auto;
+}
+.inp_container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+#delete{
+    justify-content: center;
+  display: flex;
+  background-color: var(--main-color-background);
+  border: 6px solid var(--main-color);
+    border-top: none;
+    padding: 20px 0;
+}
+#steps-container{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
