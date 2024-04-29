@@ -40,8 +40,14 @@ class PostController extends Controller
     }
     public function showStep($postId)
     {
+        $post = Post::find($postId);
         $steps = Step::where('post_id', $postId)->orderBy('order')->paginate(1); 
-        return view('step.show', compact('steps')); 
+        if ($post->status_id === 2) {
+            return view('step.show', compact('steps'));
+        }
+        else {
+            return redirect()->route('home'); // перенаправляем пользователя на главную страницу
+        }
     }
     public function like(Post $post){
       auth()->user()->favorites()->toggle($post->id);
@@ -176,13 +182,63 @@ public function storeStep(Request $request, $postId) {
 }
 public function edit(Post $post)
 {
-    $post->load('steps'); // Загружаем связанные шаги
-    return view('posts.edit', compact('post'));
+    if ($post->user_id !== auth()->id()) {
+        return redirect()->route('home');
+    } else{
+        $post->load('steps'); // Загружаем связанные шаги
+        return view('posts.edit', compact('post'));
+    }
 }
 
+// public function update(Request $request, Post $post)
+// {
+//     if ($post->user_id !== auth()->id()) {
+//         return redirect()->route('home');
+//     } else{
+//     // Валидация данных
+//     $validatedData = $request->validate([
+//         'name_post' => ['required', 'string', 'max:255'],
+//         'img_title' => ['nullable', 'image', 'mimes:jpg,jpeg,png'],
+//         'steps.*.text_st' => ['required', 'string', 'max:255'],
+//         'steps.*.img_st' => ['nullable', 'image', 'mimes:jpg,jpeg,png']
+//     ]);
+//     // Обновляем основные данные поста
+//     $post->name_post = $validatedData['name_post'];
+//     // Обновляем изображение поста, если оно загружено
+//     if ($request->hasFile('img_title')) {
+//         $img_title = $request->file('img_title');
+//         $Name = $img_title->getClientOriginalName();
+//         $path = $img_title->storeAs('img_title', $Name, 'public');
+//         $post->img_title = $path;
+//     }
+//     // Сохраняем изменения поста
+//     $post->save();
+//     // Обновляем данные каждого шага
+//     if ($request->has('steps')) {
+//         foreach ($request->input('steps') as $stepId => $stepData) {
+//             $step = Step::findOrFail($stepId);
+//             $step->text_st = $stepData['text_st'];
+
+//             // Обновляем изображение шага, если оно загружено
+//             if ($request->hasFile("steps.$stepId.img_st")) {
+//                 $img_st = $request->file("steps.$stepId.img_st");
+//                 $profileName = $img_st->getClientOriginalName();
+//                 $path = $img_st->storeAs('img_st', $profileName, 'public');
+//                 $step->img_st = $path;
+//             }
+//             // Сохраняем изменения шага
+//             $step->save();
+//         }
+//         }
+//         return redirect()->route('posts.showedit', $post)->with('success', 'Пост успешно обновлен');
+//     }
+// }
 public function update(Request $request, Post $post)
 {
-    // Валидация данных
+    if ($post->user_id !== auth()->id()) {
+        return redirect()->route('home');
+    } else {
+
     $validatedData = $request->validate([
         'name_post' => ['required', 'string', 'max:255'],
         'img_title' => ['nullable', 'image', 'mimes:jpg,jpeg,png'],
@@ -200,62 +256,63 @@ public function update(Request $request, Post $post)
         $path = $img_title->storeAs('img_title', $Name, 'public');
         $post->img_title = $path;
     }
-    
+    $post->status_id = 1;
     // Сохраняем изменения поста
     $post->save();
-    // Обновляем данные каждого шага
+    $lastStepOrder = $post->steps->isEmpty() ? 0 : $post->steps->last()->order;
+    // Обновляем данные каждого существующего шага
     if ($request->has('steps')) {
         foreach ($request->input('steps') as $stepId => $stepData) {
             $step = Step::findOrFail($stepId);
             $step->text_st = $stepData['text_st'];
 
-            // Обновляем изображение шага, если оно загружено
             if ($request->hasFile("steps.$stepId.img_st")) {
                 $img_st = $request->file("steps.$stepId.img_st");
                 $profileName = $img_st->getClientOriginalName();
                 $path = $img_st->storeAs('img_st', $profileName, 'public');
                 $step->img_st = $path;
             }
-
-            // Сохраняем изменения шага
             $step->save();
+        }
+    }
+
+    // Добавляем новые шаги
+    if ($request->has('new_steps')) {
+        foreach ($request->input('new_steps') as $order => $newStepData) {
+            $newStep = new Step();
+            $newStep->post_id = $post->id;
+            $newStep->text_st = $newStepData['text_st'];
+    
+            if ($request->hasFile("new_steps.$order.img_st")) {
+                $img_st = $request->file("new_steps.$order.img_st");
+                $profileName = $img_st->getClientOriginalName(); // Перебираем массив файлов и обрабатываем каждый отдельно
+                $path = $img_st->storeAs('img_st', $profileName, 'public');
+                $newStep->img_st = $path;
+            }
+            $newStep->order = ++$lastStepOrder;
+            $newStep->save();
         }
     }
 
     return redirect()->route('posts.showedit', $post)->with('success', 'Пост успешно обновлен');
 }
+}
 public function destroy(Post $post)
    {
-       // Удаление поста
-       $this->authorize('delete', $post); // Этот метод проверит разрешение на удаление
-
-       // Удаление поста
+       $this->authorize('delete', $post);
        $post->delete();
        return redirect()->route('posts.my');
    }
-// public function update(Request $request, Post $post)
-// {
-//     // Обновление данных поста
-//     $post->update($request->all());
-
-//     // Обновление или создание связанных шагов
-//     if ($request->has('steps')) {
-//         foreach ($request->input('steps') as $stepData) {
-//             if (isset($stepData['id'])) {
-//                 $step = Step::findOrFail($stepData['id']);
-//                 $step->update([
-//                     'text_st' => $stepData['text_st'],
-//                     // Другие поля для обновления
-//                 ]);
-//             } else {
-//                 $post->steps()->create([
-//                     'text_st' => $stepData['text_st'],
-//                     // Другие поля для создания
-//                 ]);
-//             }
-//         }
-//     }
-
-//     return redirect()->route('posts.showedit', $post);
-// }
+   public function showStepEdit($postId) {
+   $post = Post::find($postId);
+   $steps = Step::where('post_id', $postId)->orderBy('order')->paginate(1); 
+   if ($post->status_id != 2) {
+       if ($post->user_id != auth()->user()->id) {
+           return redirect()->route('home'); // Не автор, вернуть на главную страницу
+       }
+   } else {
+       return redirect()->route('step.show', ['postId' => $postId]); // Статус 2, перенаправить на step.show
+   }
+   return view('step.show', compact('steps')); 
+} 
 }

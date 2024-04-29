@@ -31,7 +31,7 @@
     </div>
     <div class="btn">
         @auth("web")
-        <form action="{{route("step.show", $post->id)}}">
+        <form action="{{route("step.showedit", $post->id)}}">
             <button type="submit" class="btn_red">Просмотреть урок</button>
         </form> 
         @endauth

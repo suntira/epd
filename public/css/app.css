@@ -81,10 +81,13 @@ button{
         background-color: var(--burgundy-color);
         color: var(--main-text);
     }
-.section{
+.section, .admin-section{
     min-height: 100vh;
     align-items: center;
     }
+.admin-section{
+    background-color: var(--main-text);
+}
 .container{
     width: 90%;
     background-color: var(--main-color);

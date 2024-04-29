@@ -13,6 +13,7 @@ header, footer {
     display: flex;
     flex-direction: row;
     gap: 20px;
+
     justify-content: space-between;
 }
 .nav-main-inf, .nav-p-inf{
@@ -50,6 +51,8 @@ margin-right: -40px;
 }
 
 .active {
-    color: var(--burgundy-color); /* Замените этот цвет на ваш */
-    /* Дополнительные стили для активной ссылки */
+    color: var(--burgundy-color);
+}
+.active_label{
+    background-image: url('/img/profile_active.svg');
 }

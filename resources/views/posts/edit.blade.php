@@ -46,7 +46,7 @@
      
         {{-- другие поля для шагов --}}
     @endforeach
-
+    <button id="add-step-btn" class="btn_red" type="button">Добавить Шаг</button>
     <button class="btn_red" type="submit">Сохранить изменения</button>
 </form>
 <form  id="delete"  action="{{ route('posts.destroy', $post) }}" method="POST">
@@ -60,3 +60,32 @@
 <link href="{{ asset('css/auth.css') }}" rel="stylesheet">
 @include('partials.footer')
 @endsection
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('add-step-btn').addEventListener('click', function () {
+            addStepForm();
+        });
+    });
+
+    function addStepForm() {
+        var lastStepOrder = {{ $post->steps->isEmpty() ? 0 : $post->steps->last()->order }};
+        var newOrder = lastStepOrder + 1;
+
+        var formContainer = document.createElement('div');
+        formContainer.className = 'inp_container';
+        formContainer.innerHTML = `
+            <div class="inp__div">
+                <label for="new-step-text">Текст Шага №${newOrder}</label>
+                <input type="text" name="new_steps[${newOrder}][text_st]" id="new-step-text">
+            </div>
+            <div class="inp__div">
+                <label for="new-step-img">Изображение Шага №${newOrder}</label>
+                <input type="file" name="new_steps[${newOrder}][img_st]" id="new-step-img">
+            </div>
+        `;
+
+        // Добавляем созданную форму перед кнопкой "Сохранить изменения"
+        var submitButton = document.querySelector('#update-post-form button[type="submit"]');
+        submitButton.parentNode.insertBefore(formContainer, submitButton);
+    }
+</script>

@@ -28,6 +28,7 @@ Route::middleware("auth")->group(function () {
     Route::get('/posts/{id}', [\App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
     Route::get('/posts/{id}/editshow', [\App\Http\Controllers\PostController::class, 'showedit'])->name('posts.showedit');
     Route::get('/posts/{postId}/steps', [\App\Http\Controllers\PostController::class, 'showStep'])->name('step.show');
+    Route::get('/posts/{postId}/stepsedit', [\App\Http\Controllers\PostController::class, 'showStepEdit'])->name('step.showedit');
     Route::get('/profile', [\App\Http\Controllers\UserController::class, 'profile'])->name('user.show');
     Route::get('/profile/edit', [\App\Http\Controllers\UserController::class, 'edit'])->name('user.edit');
     Route::post('/profile/update', [\App\Http\Controllers\UserController::class, 'update'])->name('user.update');

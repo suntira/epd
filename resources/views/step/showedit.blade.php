@@ -14,7 +14,7 @@
 <p class="description">{{$step->text_st}}</p>
 @endforeach
 {{ $steps->links() }}
-<a href="{{route("posts.show", $step->post_id)}}"  class="like btn_stop">Закночить урок</a>
+<a href="{{route("posts.showedit", $step->post_id)}}"  class="like btn_stop">Закночить урок</a>
 @endif
 </div>
 </div>
