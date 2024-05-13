@@ -10,10 +10,15 @@
         <form class="f1_i_p" action="{{route("posts.showedit", $post->id)}}">
             <button type="submit" class="btn_red">Подробнее</button>
         </form> 
-        {{-- <form  class="f1_i_p"  action="{{ route('posts.destroy', $post) }}" method="POST">
+        <form action="{{route("posts.like", $post->id)}}" method="post">
             @csrf
-            @method('DELETE')
-            <button type="submit"  class="btn_white btn_like">Удалить</button>
-        </form> --}}
+            @auth
+            @if(auth()->user()->favorites->contains($post->id))
+            <button type="submit" class="btn_white btn_like">Убрать из избранного</button>
+            @else
+            <button type="submit" class="btn_white btn_like">Добавить в избранное</button>
+            @endif
+            @endauth
+        </form> 
         <p class="p_status">{{$post->statuses->name}}</p>
 </div>

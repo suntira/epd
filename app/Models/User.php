@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'name',
         'username',
         'email',
@@ -63,4 +64,8 @@ class User extends Authenticatable
         }
         return "img/avatars.jpg";
     }
+    
+    public function comments(){
+        return $this->hasMany(Comment::class);
+   }
 }

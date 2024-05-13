@@ -46,6 +46,28 @@
      
 </div>
 </div>
+<div class="">
+    <section>
+        <form class="comment_form" action="{{route("comment", $post->id)}}" method="post">
+            @csrf
+            <div class="">
+            <textarea name="text" id="" placeholder="Ваш комментарий..."></textarea>
+            @error('text')
+            <p >{{ $message }}</p>
+            @enderror
+        </div>
+            <button class="comment_btn btn_red">Написать</button>
+        </form>
+        <div class="comment_container">
+            @foreach($post->comments as $comment)
+            <div class="comment_container_content">
+                <p class="p_des">{{$comment->user->username}}:</p>
+            <p>{{$comment->text}}</p>
+        </div>
+        @endforeach
+    </div>
+    </section>
+</div>
 </div>
 </div>
 @include('partials.showfooter')

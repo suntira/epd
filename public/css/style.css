@@ -2,6 +2,9 @@ header, footer {
     width: 100%;
     background-color: var(--main-color-background);
 }
+.footer-p{
+    font-size: 0.75rem;
+}
 .container_first{
     width: 90%;
     height: 86px;
@@ -12,10 +15,11 @@ header, footer {
 .navigation{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     gap: 20px;
 
-    justify-content: space-between;
 }
+
 .nav-main-inf, .nav-p-inf{
     display: flex;
     flex-direction: row;
@@ -48,10 +52,15 @@ margin-right: -40px;
   text-align: right;
   z-index: 999;
   position: relative;
-}
-
+} 
+@media (max-width: 600px) {
+    #burger:checked + label + nav{
+        padding: 40px 20px 5px 5px;
+    }
+ }
 .active {
     color: var(--burgundy-color);
+    font-weight: 400;
 }
 .active_label{
     background-image: url('/img/profile_active.svg');

@@ -55,9 +55,6 @@ p{
     color: var(--main-color);
 }
 .like{
-    color: var(--burgundy-color);
-    font-weight: 300;
-    letter-spacing: .1rem;
     margin: 0 auto;
 }
 
@@ -83,3 +80,61 @@ form{
 .btn_back {
     margin: 0 0 20px 80px;
 }
+.like{
+    color: var(--burgundy-color);
+}
+.comment_form{
+    display: flex;
+    justify-content: center;
+
+}
+textarea{
+    height: 55px;
+    width: 355px;
+    background-color: var(--main-text);
+    border: 2px solid var(--burgundy-color);
+    padding: 10px;
+}
+@media(max-width:1000px) {
+    .img_title{
+        width: 529px;
+        height: 372px;
+        }
+        .post{
+            padding-top: 20px;
+            padding-bottom: 40px;
+            }
+            .btn_back {
+                margin: 0 0 0 20px;
+            }
+}
+@media(max-width:700px) {
+    textarea{
+        width: 205px;
+    }
+    .img_title{
+        width: 442px;
+        height: 310px;
+        }
+    .cont_des{
+        gap: 5px;
+      flex-direction: column;
+    }
+    .des{
+        display: flex;
+ justify-content: center;
+    }
+    }
+    @media(max-width:550px) {
+        .img_title{
+            width: 268px;
+            height:186px;
+            }
+        textarea{
+            width: 175px;
+        }
+        .comment_btn{
+            width: 105px;
+        }
+        }
+

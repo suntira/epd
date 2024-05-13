@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function profile(){
         $user = auth()->user();
-        $favorites = $user->favorites()->paginate(3);
+        $favorites = $user->favorites()->where('status_id', 2)->paginate(3);
         $posts = $user->post()->where('status_id', 2)->paginate(3);
         return view('user.show', ['user' => $user, 'posts' => $posts, 'favorites' => $favorites]);
     }

@@ -30,11 +30,10 @@ label{
     letter-spacing: .1rem;
 }
 label:hover{
-        color: var(--burgundy-colo);
-        font-size: .8rem;
-        font-weight: 300;
-        letter-spacing: .1rem;
-    
+    color: var(--burgundy-colo);
+    font-size: .8rem;
+    font-weight: 300;
+    letter-spacing: .1rem;
 }
 .filter_cont{
     padding: 40px 20px;
@@ -44,6 +43,49 @@ label:hover{
     justify-content: center;
     gap: 65px;
     }
+.f_cl_1{
+    display: flex;
+    margin-top: 20px;
+}
+.fil2_cont{
+    display: flex;
+    gap: 20px;
+    }
+input{
+    width: 355px;
+}
+@media(max-width:1400px) {
+    .filter_cont{
+        flex-direction: column-reverse;
+        gap: 25px;
+     }
+    .f_cl_1{
+         display: flex;
+        justify-content: center;
+        margin-top: 0;
+     }
+} 
+@media(max-width:800px) {
+    .fil2_cont{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        }
+        .wrap{
+            padding: 10px 0;
+            margin: 0 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 120px;
+            }
+            
+} 
+@media(max-width:575px) {
+    input{
+   width: auto;
+        }
+} 
 .fil{
 display: flex;
 flex-direction: column;
@@ -56,21 +98,15 @@ justify-content: center;
 align-items: center;
 gap: 20px;
     }
-.fil2_cont{
-display: flex;
-gap: 20px;
-}
+
 #fil_1{
     display: flex;
    
 }
-.f_cl_1{
-    display: flex;
-    margin-top: 20px;
+.btn_back1{
+    padding: 20px 0 0  20px;  
 }
-input{
-width: 355px;
-}
+
 .btn_f1{
     width: 55px;
     height: 55px;
@@ -102,6 +138,12 @@ background: rgb(145, 93, 93, 0);
 font-size: 6rem;
 font-weight: 200;
 }
+@media(max-width:600px) {
+    .btn_create{
+        height: 413px;
+        width: 272px;
+        }
+} 
 #form_create_btn{
     margin: 0;
 }

@@ -25,6 +25,7 @@
     });
         </script>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/pag.css') }}" rel="stylesheet">
     </head>
     <body >
         @yield('content')

@@ -3,6 +3,7 @@
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
+    font-family: Bitter;
 }
 :root {
     font-size: 16px;
@@ -12,6 +13,11 @@
     --light-grey-color:#DBBFC0;
    --burgundy-color : #46191B;
     --main-text: #f5f5f5FF;
+}
+@media (max-width: 940px) {
+    :root {
+        font-size: 12px;  
+    }
 }
 body{
     background-color: var(--main-color-background);
@@ -38,10 +44,10 @@ a, label{
     font-family: Bitter;
     font-size: 1rem;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 300;
     text-decoration: none;
 }
-a:hover, label:hover{
+a:hover{
     color: var(--burgundy-color);
     font-weight: 500;
 }
@@ -63,6 +69,11 @@ button{
     font-weight: 300;
 
     }
+    @media(max-width:600px){
+        button{
+            width: 205px;
+            }
+        }           
 
 .btn_white{
     background-color: rgb(25,23,3,0);
@@ -104,6 +115,16 @@ button{
     letter-spacing: .1rem;
     font-size: 1.5rem;
 }
+.container_404 {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+}
+.p_404{
+    font-size: 2rem;
+    color: var(--burgundy-color);
+}
 .p_status{
     color: var(--burgundy-color);
 
@@ -136,4 +157,13 @@ button{
 }
 .option{
     opacity: 0.5;
+}
+.like {
+    color: var( --main-text);
+    font-weight: 300;
+    letter-spacing: .1rem;
+  
+}
+.btn_back {
+   height: 48px; 
 }

@@ -14,7 +14,9 @@ use App\Models\Subject;
 use App\Models\Type;
 use App\Models\Favorite;
 use Carbon\Carbon;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\CommentForm;
 class PostController extends Controller
 {
     public function index(FilterRequest $request)
@@ -33,23 +35,31 @@ class PostController extends Controller
     {
         $user = auth()->user();
         $post = Post::findOrFail($id);
-        return view('posts.show', [
-            "post" => $post,
-            'user'=> $user
-        ]);
+        if ($post->status_id === 2) {
+            return view('posts.show', [
+                "post" => $post,
+                'user'=> $user
+            ]);
+        }
+        else {
+            return redirect()->route('home'); // перенаправляем пользователя на главную страницу
+        }
+      
     }
     public function showStep($postId)
     {
         $post = Post::find($postId);
         $steps = Step::where('post_id', $postId)->orderBy('order')->paginate(1); 
         if ($post->status_id === 2) {
-            return view('step.show', compact('steps'));
+            return view('step.show', compact('steps', 'postId'));
         }
         else {
             return redirect()->route('home'); // перенаправляем пользователя на главную страницу
         }
     }
-    public function like(Post $post){
+
+   
+        public function like(Post $post){
       auth()->user()->favorites()->toggle($post->id);
        return redirect()->back();
      }
@@ -185,54 +195,16 @@ public function edit(Post $post)
     if ($post->user_id !== auth()->id()) {
         return redirect()->route('home');
     } else{
+        $types= Type::get(['id','name' ]);
+    $subjects= Subject::get(['id','name' ]);
+    $levls= Levl::get(['id','name' ]);
+    $selectedSubjectId = $post->subject_id;
+    $selectedTypeId = $post->type_id;
+    $selectedLevlId = $post->levl_id;
         $post->load('steps'); // Загружаем связанные шаги
-        return view('posts.edit', compact('post'));
+        return view('posts.edit', compact('post', 'levls', 'subjects', 'types', 'selectedSubjectId', 'selectedTypeId', 'selectedLevlId'));
     }
 }
-
-// public function update(Request $request, Post $post)
-// {
-//     if ($post->user_id !== auth()->id()) {
-//         return redirect()->route('home');
-//     } else{
-//     // Валидация данных
-//     $validatedData = $request->validate([
-//         'name_post' => ['required', 'string', 'max:255'],
-//         'img_title' => ['nullable', 'image', 'mimes:jpg,jpeg,png'],
-//         'steps.*.text_st' => ['required', 'string', 'max:255'],
-//         'steps.*.img_st' => ['nullable', 'image', 'mimes:jpg,jpeg,png']
-//     ]);
-//     // Обновляем основные данные поста
-//     $post->name_post = $validatedData['name_post'];
-//     // Обновляем изображение поста, если оно загружено
-//     if ($request->hasFile('img_title')) {
-//         $img_title = $request->file('img_title');
-//         $Name = $img_title->getClientOriginalName();
-//         $path = $img_title->storeAs('img_title', $Name, 'public');
-//         $post->img_title = $path;
-//     }
-//     // Сохраняем изменения поста
-//     $post->save();
-//     // Обновляем данные каждого шага
-//     if ($request->has('steps')) {
-//         foreach ($request->input('steps') as $stepId => $stepData) {
-//             $step = Step::findOrFail($stepId);
-//             $step->text_st = $stepData['text_st'];
-
-//             // Обновляем изображение шага, если оно загружено
-//             if ($request->hasFile("steps.$stepId.img_st")) {
-//                 $img_st = $request->file("steps.$stepId.img_st");
-//                 $profileName = $img_st->getClientOriginalName();
-//                 $path = $img_st->storeAs('img_st', $profileName, 'public');
-//                 $step->img_st = $path;
-//             }
-//             // Сохраняем изменения шага
-//             $step->save();
-//         }
-//         }
-//         return redirect()->route('posts.showedit', $post)->with('success', 'Пост успешно обновлен');
-//     }
-// }
 public function update(Request $request, Post $post)
 {
     if ($post->user_id !== auth()->id()) {
@@ -242,12 +214,18 @@ public function update(Request $request, Post $post)
     $validatedData = $request->validate([
         'name_post' => ['required', 'string', 'max:255'],
         'img_title' => ['nullable', 'image', 'mimes:jpg,jpeg,png'],
+        "type_id" => ["required", "integer"],
+        "subject_id" => ["required", "integer"],
+        "levl_id" => ["required", "integer"],
         'steps.*.text_st' => ['required', 'string', 'max:255'],
         'steps.*.img_st' => ['nullable', 'image', 'mimes:jpg,jpeg,png']
     ]);
 
     // Обновляем основные данные поста
     $post->name_post = $validatedData['name_post'];
+    $post->type_id = $validatedData['type_id'];
+    $post->subject_id = $validatedData['subject_id'];
+    $post->levl_id = $validatedData['levl_id'];
 
     // Обновляем изображение поста, если оно загружено
     if ($request->hasFile('img_title')) {
@@ -313,6 +291,11 @@ public function destroy(Post $post)
    } else {
        return redirect()->route('step.show', ['postId' => $postId]); // Статус 2, перенаправить на step.show
    }
-   return view('step.show', compact('steps')); 
+   return view('step.show', compact('steps', 'postId')); 
 } 
+public function comment($id, CommentForm $request){
+    $post = Post::findOrFail($id);
+    $post->comments()->create($request->validated());
+    return redirect(route("posts.show", $post->id));
+}
 }

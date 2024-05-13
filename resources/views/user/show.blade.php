@@ -44,7 +44,7 @@
          <p class="p_not_found">у Вас нет избранных уроков</p>
           @endif
         </div>
-       <a class="btn_stop like" href="{{ route('posts.favorites', ['userId' => $user->id]) }}">Перейти на страницу избранные уроки</a>
+       <a class="btn_stop " href="{{ route('posts.favorites', ['userId' => $user->id]) }}">Перейти на страницу избранные уроки</a>
          @if( $user->role_id === 2)
          <p class="post-name">Ваши уроки:</p>
          <div class="profile_post_cont">
@@ -56,7 +56,7 @@
            <p class="p_not_found">у Вас нет уроков</p>
            @endif
          </div>
-         <a class="btn_stop like" href="{{ route('posts.my') }}">Перейти на страницу редактирования уроков</a>
+         <a class="btn_stop " href="{{ route('posts.my') }}">Перейти на страницу редактирования уроков</a>
             @endif
            
     </div>

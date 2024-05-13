@@ -1,19 +1,5 @@
 
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-        {{-- @if (Route::has('login'))
-            <div >
-                @auth
-                    <a href="{{ url('/home') }}" >Home</a>
-                @else
-                    <a href="{{ route('login') }}">Log in</a>
-
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}" >Register</a>
-                    @endif
-                @endauth
-            </div>
-        @endif --}}
-
     <header>
         <div class="container_first">
             <div class="navigation">
@@ -23,7 +9,7 @@
                 </div>
                 <p class="nav-p-inf">étape pour dessiner</p>
                 <div class="nav-profile-inf">
-                    <input type="checkbox" id="burger">
+                    <input type="checkbox" id="burger"> 
                     <label for="burger" class="{{ request()->is('profile') ? 'active_label' : '' }}"></label>
                     <nav class="nav">
                         <ul>

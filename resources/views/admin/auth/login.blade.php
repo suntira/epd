@@ -1,12 +1,12 @@
 @extends('layout.app')
-@section('title', 'Вход')
+@section('title', 'Вход Админ')
 @section('content')
 @include('partials.header')
 <div class="container">
     <div class="section">
         <div class="auth_container">
                 <form method="POST" id="login-form" action="{{ route("admin.login_process")}}">
-                    <p class="p1">Добро пожаловать!</p>
+                    <p class="p1">Вход администратора</p>
                     @csrf
                     <div class="inp">
                         <div class="inp__div">

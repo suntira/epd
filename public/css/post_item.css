@@ -20,6 +20,17 @@ width: 306.95px;
 height: 217px;
 margin: 0 auto;
 }
+@media(max-width:600px){
+    .post_title{
+        width: 216.95px;
+        height: 154px;
+        }
+        .post_container {
+            width: 272px;
+            height: 413px;
+            }
+} 
+
 .post_name{
 font-weight: 500;
 margin-top: 20px;

@@ -4,7 +4,7 @@
 @include('partials.header')
 <div class="container">
     <div class="section">
-        <div class="auth_container">
+        <div class="auth_container2">
  <a  href="{{ route('posts.showedit', ['id' => $post->id]) }}" class="btn_back like"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="currentColor" d="m4 10l-.354.354L3.293 10l.353-.354zm16.5 8a.5.5 0 0 1-1 0zM8.646 15.354l-5-5l.708-.708l5 5zm-5-5.708l5-5l.708.708l-5 5zM4 9.5h10v1H4zM20.5 16v2h-1v-2zM14 9.5a6.5 6.5 0 0 1 6.5 6.5h-1a5.5 5.5 0 0 0-5.5-5.5z"/></svg></a>  
 <form action="{{ route('posts.update', $post) }}" method="POST" id="update-post-form" enctype="multipart/form-data">
     @csrf
@@ -15,15 +15,44 @@
     <input type="text" name="name_post" value="{{ $post->name_post }}">
 </div>
 <div class="inp__div">
-    <label for="img_title ">Изображение поста</label>
-    <input type="file" name="img_title">
-    @if($post->img_title)
-    <img src="{{ asset('storage/' . $post->img_title) }}" alt="img_title" class="img_post">
-@endif
+    <div class="inp__div_img">
+        <div class="inp__div_img_inp">
+            <label for="img_title ">Изображение поста</label>
+            <input type="file" name="img_title">
+        </div>
+        @if($post->img_title)
+        <img src="{{ asset('storage/' . $post->img_title) }}" alt="img_title" class="img_post">
+    @endif
+    </div>
+
 </div>
 @error('img_title')
 <p >{{ $message }}</p>
 @enderror
+    <div class="inp__div">
+    <label for="levl_id">Сложность</label>
+    <select name="levl_id">
+        @foreach ($levls as $levl)
+            <option value="{{ $levl->id }}"  @if ($levl->id == $selectedLevlId) selected @endif>{{ $levl->name }}</option>
+        @endforeach
+        </select>
+    </div>
+   <div class="inp__div">
+    <label for="type_id">Тип</label>
+    <select name="type_id">
+        @foreach ($types as $type)
+            <option value="{{ $type->id }}" @if ($type->id == $selectedTypeId) selected @endif>{{ $type->name }}</option>
+        @endforeach
+        </select>
+    </div>
+    <div class="inp__div">
+        <label for="subject_id">Категория</label>
+        <select name="subject_id">
+            @foreach ($subjects as $subject)
+                <option value="{{ $subject->id }}" @if ($subject->id == $selectedSubjectId) selected @endif>{{ $subject->name }}</option>
+            @endforeach
+        </select>
+    </div>
 </div>
    
 

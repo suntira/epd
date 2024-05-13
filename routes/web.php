@@ -39,6 +39,7 @@ Route::middleware("auth")->group(function () {
     Route::get('/posts/{post}/edit',[\App\Http\Controllers\PostController::class, 'edit'])->name('posts.edit');
     Route::patch('/posts/{post}/update', [\App\Http\Controllers\PostController::class, 'update'])->name('posts.update');
     Route::delete('/posts/{post}/delete', [\App\Http\Controllers\PostController::class, 'destroy'])->name('posts.destroy');
+    Route::post('/posts/comment/{id}', [\App\Http\Controllers\PostController::class, 'comment'])->name('comment');
 });
 Route::middleware("guest")->group(function () {
     Route::get('/register', [\App\Http\Controllers\AuthController::class,'showRegisterForm'])->name('register');

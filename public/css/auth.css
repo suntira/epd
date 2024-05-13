@@ -41,6 +41,22 @@ padding: 60px 40px;
 #update-form, #create-post-form, #update-post-form{
     min-height: 1017px;
 }
+@media(min-width:551px) and (max-width:750px) {
+    #login-form{
+        width: 444px;
+        }
+        #form-signup, #update-form, #create-post-form{
+            width: 444px;
+        }
+    } 
+    @media(max-width:550px) {
+        #login-form{
+            width: 324px;
+            }
+            #form-signup, #update-form, #create-post-form{
+                width: 324px;
+            }
+        }  
 input, select{
     width: 255px;
     height: 55px;
@@ -51,6 +67,7 @@ input, select{
     opacity: 1;
     font-family: Bitter;
 }
+ 
 ::placeholder{
     opacity: 1;
     color: var(--burgundy-color);
@@ -91,8 +108,14 @@ align-items: center;
 }
 .step {
     display: flex;
-    gap: 10px
+    gap: 10px;
 }
+@media(max-width:800px){
+    .step{
+       flex-direction: column;
+       gap: 20px;
+        }
+    }
 .step label{
     color: var(--burgundy-color);
     font-size: 1.5rem;
@@ -102,15 +125,16 @@ align-items: center;
     padding: 20px 0 0  80px;
 }
 .like{
+    width: 48px;
+    height: 48px;
     color: var(--burgundy-color);
-    font-weight: 300;
-    letter-spacing: .1rem;
-    margin: 0 auto;
 }
 .inp_container{
     display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
+   flex-direction: column;
+   justify-content: center;
+    gap: 12px;
+    align-items: center;
 }
 
 #delete{
@@ -126,3 +150,35 @@ align-items: center;
     flex-direction: column;
     gap: 40px;
 }
+.inp__div_img{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.inp__div_img_inp{
+    display: flex;
+    flex-direction: column;
+}
+@media(max-width:600px) and (min-width:451px){
+    input, select{
+        width: 205px;
+        }
+        .img_post{
+            height: 248px;
+            width: 352.5px;
+        }
+       
+    }
+    @media(max-width:600px){
+        .btn_back {
+            padding: 20px 0 0 0;
+        }
+    }
+  
+    @media(max-width:450px){
+            .img_post{
+                height: 211px;
+                width: 309.5px;
+            }
+        }
