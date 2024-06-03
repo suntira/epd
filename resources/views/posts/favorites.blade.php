@@ -15,8 +15,8 @@
  {{-- {{$favorites->links()}}  --}}
        {{-- начало --}}
 @php
-$currentPage = $posts->currentPage();
-$lastPage = $posts->lastPage();
+$currentPage = $favorites->currentPage();
+$lastPage = $favorites->lastPage();
 // Создаем массив с номерами страниц
 $pages = [];
 // Добавляем троеточие перед активной страницей, если есть страницы до
@@ -41,13 +41,13 @@ $currentPageInfo = "Страница $currentPage из $totalPages";
 <div class="pag_nav_container">
     <ul class="pagination">
         {{-- Previous Page Link --}}
-        @if ($posts->onFirstPage())
+        @if ($favorites->onFirstPage())
             <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
                 <span class="page-link" aria-hidden="true">&lsaquo;</span>
             </li>
         @else
             <li class="page-item">
-                <a class="page-link" href="{{ $posts->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">&lsaquo;</a>
+                <a class="page-link" href="{{ $favorites->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">&lsaquo;</a>
             </li>
         @endif
         {{-- Pagination Elements --}}
@@ -63,9 +63,9 @@ $currentPageInfo = "Страница $currentPage из $totalPages";
             @endif
         @endforeach
         {{-- Next Page Link --}}
-        @if ($posts->hasMorePages())
+        @if ($favorites->hasMorePages())
             <li class="page-item">
-                <a class="page-link {{ request()->is('posts') ? 'active' : '' }}" href="{{ $posts->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">&rsaquo;</a>
+                <a class="page-link {{ request()->is('posts') ? 'active' : '' }}" href="{{ $favorites->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">&rsaquo;</a>
             </li>
         @else
             <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.next')">

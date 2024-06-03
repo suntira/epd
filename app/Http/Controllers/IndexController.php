@@ -12,7 +12,7 @@ class IndexController extends Controller
 {
     public function index(Request $request) {
     $phrases = Phrase::inRandomOrder()->paginate(1);
-    return view('welcome', [
+    return view('index', [
         "phrases" => $phrases
     ]);
 }

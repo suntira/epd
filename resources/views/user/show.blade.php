@@ -13,19 +13,19 @@
         <div class="cont_des">
           <div class="des profile__des">
             <p class="p_des">Имя:</p>
-            <p class="p_name"> {{ $user->name}}</p>
+            <p class="p_name2"> {{ $user->name}}</p>
            </div>
            <div class="des profile__des">
              <p class="p_des">Ник:</p>
-             <p class="p_name"> {{ $user->username }}</p>
+             <p class="p_name2"> {{ $user->username }}</p>
             </div>
             <div class="des profile__des">
              <p class="p_des">О Себе:</p>
-             <p class="p_name"> {{ $user->bio}}</p>
+             <p class="p_name2"> {{ $user->bio}}</p>
             </div>
             <div class="des profile__des">
              <p class="p_des">Роль:</p>
-             <p class="p_name"> {{ $user->role->type }}</p>
+             <p class="p_name2"> {{ $user->role->type }}</p>
             </div>
             <form action="{{ route('user.edit') }}">
              <button type="submit" class="btn_red">Редактировать профиль</button>

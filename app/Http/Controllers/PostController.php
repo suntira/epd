@@ -140,7 +140,6 @@ public function myPosts(){
                 'user'=> $user
             ]);
         }
-       
  }
 public function createStepForm($postId)
 {

@@ -65,6 +65,13 @@ padding: 100px 0 0 0;
      font-weight: 300;
      letter-spacing: .1rem;
   }
+  .p_name2 {
+    width: 100%;
+
+     text-align: left;
+     font-weight: 300;
+     letter-spacing: .1rem;
+  }
   .p_name1{
     color: var(--burgundy-color);
     font-weight: 400;
